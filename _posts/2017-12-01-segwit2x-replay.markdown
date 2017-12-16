@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "An attempt at defining bitcoin"
+title:  "Non-interactive Non-custodial Replay Protection for segwit2x"
 date:   2017-11-19 16:06:11 +0900
 permalink: /segwit2x-replay
 categories: jekyll update

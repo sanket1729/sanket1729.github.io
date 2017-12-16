@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "An attempt at defining bitcoin"
+title:  "A survey on UTXO commitments schemes for bitcoin"
 date:   2017-11-19 16:06:11 +0900
 permalink: /utxo-commitments
 categories: jekyll update
