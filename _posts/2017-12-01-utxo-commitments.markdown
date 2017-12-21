@@ -10,6 +10,7 @@ transaction is created, UTXOs are used to claim the funds they are holding, and 
 
 <h3>Motivation:</h3>
 
+<h3>Motivation:</h3>
 UTXO growth has been a issue which has recieved lots os traction in the bitcoin community recently. There are lots of unused UTXOs becuase of use of blockchain for timestamping purposes, dust outputs. These outputs are kept by every single node on the network.
 The potential use cases could be include fast sync methods with known UTXO sets.
 Database consistency check across multiple full nodes.
@@ -49,3 +50,6 @@ TXO bitfields:
 New security Model:
 
 Future Work:
+
+<h4>TXO MMR commitments: </h4>
+TXO commitment state, 
