@@ -10,20 +10,20 @@ action outputs that have not been spent at a given moment. Whenever a new
 transaction is created, UTXOs are used to claim the funds they are holding, and
 new UTXOs are created. Whenever a transaction in confirmed in the blockchain, the inputs UTXO's are spent and new output UTXOs are created.
 
-Motivation:
+<h3>Motivation:</h3>
 UTXO growth has been a issue which has recieved lots os traction in the bitcoin community recently. There are lots of unused UTXOs becuase of use of blockchain for timestamping purposes, dust outputs. These outputs are kept by every single node on the network.
 The potential use cases could be include fast sync methods with known UTXO sets.
 Database consistency check across multiple full nodes.
 
-Adding UTXO set to consensus rules:
+<h3>Adding UTXO set to consensus rules:</h3>
 
 Commiting UTXO sets in the same block creates new problems as it invalidates SPV mining. SPV mining(mining empty blocks without verifing the previous block) is also useful because it mitigates certain transaction delays in propogation of entire block. Currently, block witholding attack is made harder by "Header stealing" or sniffing the header form a competing pool. Other pools can start thier work on the new block with just the header and validate the block once they recieve it completely. In other words, the time required for transmition of the blocks and verification of the block can be used for mining. Such a mechanism is not possible if UTXO commitments of the sameblock are required to be commited in the block being currently mined.
 A simple solution could be include a UTXO set commitment of a block which is k blocks prior in history.
 
 
-Known Proposals:
+<h3>Known Proposals:</h3>
 
-Rolling UTXO hashes:
+<h4>Rolling UTXO hashes:</h4>
 Peter Wuille:
 This proposal is not strictly a commmitment to the blockchain, but a way to maintain these hashes locally in an incremental fashion. The rolling hash of UTXO set is simply an unordered set hash. In simpler words, it does not support the query of the type, "Is UTXO u1 present in the set?", but can only answer question like,
 "Is UTXO set S1 same or different from S2?".
@@ -35,12 +35,5 @@ Rolling Hash Set S2 = S1 - H(b) - H(d) + H(b1) + h(d1)
 
 The suggested operation is multiplication mod prime in ECC field which bitcoin already uses.
 
-TXO MMR commitments:
-
-Naive appraoach:
-
-TXO bitfields:
-
-New security Model:
-
-Future Work:
+<h4>TXO MMR commitments: </h4>
+TXO commitment state, 
