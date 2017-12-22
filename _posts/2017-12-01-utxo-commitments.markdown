@@ -40,9 +40,9 @@ This approach is not concensus critical, which is huge plus. This approach is al
 <h4>TXO MMR commitments: </h4>
 
 Directly from Peter Todd's reference:
-<pre>
+
 A merkle tree committing to the state of all transaction outputs, both spent and unspent, can provide a method of compactly proving the current state of an output. This lets us “archive” less frequently accessed parts of the UTXO set, allowing full nodes to discard the associated data, still providing a mechanism to spend those archived outputs by proving to those nodes that the outputs are in fact unspent.
-</pre>
+
 This approach uses uses a Merkle Mountain Range1 (MMR), a type of deterministic, indexable, insertion ordered merkle tree, which allows new items to be cheaply appended to the tree. There is no need for deletion opperation as compared to normal Binary Tree(Red Black Trees, AVL trees). Instead of removing the output we just update it's status to spent. The compact proof of this structure will be mountain tips. 
 
 bandwidth overhead per txin is substantial, so a more realistic implementation is be to have a UTXO cache for recent transactions, with TXO commitments acting as a alternate for the (rare) event that an old txout needs to be spent.
