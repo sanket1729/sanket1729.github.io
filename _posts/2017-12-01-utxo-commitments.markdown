@@ -17,8 +17,7 @@ Database consistency check across multiple full nodes.
 
 </br>
 <h3>Simple Solution:</h3>
-</br>
-A simple approach would involve creating a serialized merkle hash of the  might be worth answering is why not the simple way of using RBL/AVL trees for implementing balanced binary tree type structure? It supports all the operations we desire 
+</br> 
 
 <h3>Adding UTXO set to consensus rules:</h3>
 
@@ -40,16 +39,30 @@ Rolling Hash Set S2 = S1 - H(b) - H(d) + H(b1) + h(d1)
 
 The suggested operation is multiplication mod prime in ECC field instead of addition which bitcoin already uses. Thus, there is no increase in security assumptions for the system.
 
-Pros: This approach is not concensus critical, 
-TXO MMR commitments:
+This approach is not concensus critical, which is huge plus. This approach is also incremental in nature which means it does not rquire to recompute the whole UTXO set merkle hash everytime. 
+
+<h4>TXO MMR commitments: </h4>
+
+Directly from Peter Todd's reference:
+<pre>
+A merkle tree committing to the state of all transaction outputs, both spent and unspent, can provide a method of compactly proving the current state of an output. This lets us “archive” less frequently accessed parts of the UTXO set, allowing full nodes to discard the associated data, still providing a mechanism to spend those archived outputs by proving to those nodes that the outputs are in fact unspent.
+</pre>
+This approach uses uses a Merkle Mountain Range1 (MMR), a type of deterministic, indexable, insertion ordered merkle tree, which allows new items to be cheaply appended to the tree. There is no need for deletion opperation as compared to normal Binary Tree(Red Black Trees, AVL trees). Instead of removing the output we just update it's status to spent. The compact proof of this structure will be mountain tips. 
+
+bandwidth overhead per txin is substantial, so a more realistic implementation is be to have a UTXO cache for recent transactions, with TXO commitments acting as a alternate for the (rare) event that an old txout needs to be spent.
+
+Pros: 
+Proofs can be generated and added to transactions by anyone having the full MMR. And because of the one-wayness commitment, it is impossible to forge such a wrong proof. 
+
+Cons:
+This would require complete layer of P2P protocol for communnicating different parts of TXO MMR. There needs to new mechanism for attaching path proofs to Mountain Tips for lite wallets. 
 
 Naive appraoach:
+A simple approach would involve creating a serialized merkle root of UTXO commitments. It might be worth answering is why not the simple way of using RBL/AVL trees for implementing balanced binary tree type structure? It supports all the operations we desire. Not that 
 
 TXO bitfields:
 
 New security Model:
+UTXO commitments give rise to a new security model. I can easily set a full node with a --assumed-txo set and I am good to interact with the bitcoin P2P network.  
 
-Future Work:
-
-<h4>TXO MMR commitments: </h4>
 TXO commitment state, 
