@@ -10,14 +10,10 @@ transaction is created, UTXOs are used to claim the funds they are holding, and 
 
 <h3>Motivation:</h3>
 
-<h3>Motivation:</h3>
 UTXO growth has been a issue which has recieved lots os traction in the bitcoin community recently. There are lots of unused UTXOs becuase of use of blockchain for timestamping purposes, dust outputs. These outputs are kept by every single node on the network.
 The potential use cases could be include fast sync methods with known UTXO sets.
 Database consistency check across multiple full nodes.
 
-</br>
-<h3>Simple Solution:</h3>
-</br> 
 
 <h3>Adding UTXO set to consensus rules:</h3>
 
@@ -60,9 +56,7 @@ This would require complete layer of P2P protocol for communnicating different p
 Naive appraoach:
 A simple approach would involve creating a serialized merkle root of UTXO commitments. It might be worth answering is why not the simple way of using RBL/AVL trees for implementing balanced binary tree type structure? It supports all the operations we desire. Not that 
 
-TXO bitfields:
 
 New security Model:
-UTXO commitments give rise to a new security model. I can easily set a full node with a --assumed-txo set and I am good to interact with the bitcoin P2P network.  
+UTXO commitments give rise to a new security model. I can easily set a full node with a --assumed-txo set and I am good to interact with the bitcoin P2P network. This is similar but worse than --assumed-valid which bitcoin core introduced in 0.14. --assumed-valid required the miners and as well the developers together to cheat the user, where here the user would simply be trusting the software. 
 
-TXO commitment state, 
