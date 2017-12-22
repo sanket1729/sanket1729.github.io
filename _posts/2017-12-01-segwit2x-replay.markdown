@@ -28,8 +28,7 @@ Even though segwit2x chain has base transaction size limit of 1000000(possibly a
 A transaction which is slightly less than 1000000 can't be a transaction in bitcoin block, but it can fit in segwit2x block. Note that this transaction is however does not pass the isStandard() checks in most reference clients. So, it is accepted or repaly by any node. It can still be mined by any miner.
 
 <h4>Native replay protection using sigOps Limit:</h4>
-The best way to attack bitcoin using the sigops limit per block was discussed at length in this bitcoin talk <a href="https://bitcointalk.org/index.php?topic=1166928.0;all">post</a>. We use a similar bitcoin script to inflate the sigops count so that is accepted in segwit2x chain, but not in the bitcoin chain. Simply, bitcoin core uses SigOps limit 20,000k per block. 
-
+The best way to attack bitcoin using the sigops limit per block was discussed at length in this bitcoin talk <a href="https://bitcointalk.org/index.php?topic=1166928.0;all">post</a>. We use a similar bitcoin script to inflate the sigops count so that is accepted in segwit2x chain, but not in the bitcoin chain. Bitcoin uses SigOps limit 20,000k per block as a consensus rule. Also, because of the 520 bytes contraint on P2SH redeem script size, it is only possible to make a transaction with 15 such inputs(~225 SIGOPS) to pass bitcoin IsStandard() test. Therefore, this way would also require miner co-operation because making more sigops per transaction would fail IsStandard(). 
 
 <h4>Providing replay protection as a service:</h4>
 

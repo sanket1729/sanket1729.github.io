@@ -53,10 +53,10 @@ Proofs can be generated and added to transactions by anyone having the full MMR.
 Cons:
 This would require complete layer of P2P protocol for communnicating different parts of TXO MMR. There needs to new mechanism for attaching path proofs to Mountain Tips for lite wallets. 
 
-Naive appraoach:
-A simple approach would involve creating a serialized merkle root of UTXO commitments. It might be worth answering is why not the simple way of using RBL/AVL trees for implementing balanced binary tree type structure? It supports all the operations we desire. Not that 
+<h4>Naive appraoach:</h4>
+A simple approach would involve creating a serialized merkle root of UTXO commitments. It might be worth answering is why not the simple way of using RBL/AVL trees for implementing balanced binary tree type structure? It supports all the operations we desire. But we would maintaining this structure in entirity for the entire UTXO set(unlike pruning away some parts in TXO commitments). Furthermore, operations for deletion and tree balancing can be equally costly for newer UTXOs as they are older UTXO's. The older UTXOs are still required to kept by the entire system. 
 
 
-New security Model:
+<h4>New security Model:</h4>
 UTXO commitments give rise to a new security model. I can easily set a full node with a --assumed-txo set and I am good to interact with the bitcoin P2P network. This is similar but worse than --assumed-valid which bitcoin core introduced in 0.14. --assumed-valid required the miners and as well the developers together to cheat the user, where here the user would simply be trusting the software. 
 
