@@ -36,10 +36,9 @@ With the above native replay protection methods, you can get your coins split wi
 
 <h4>Sighash Types:</h4>
 Most bitcoin transactions require signature to spend UTXO's. An important question which is not discussed often is which data used in the signature. That is determined by the sighash. Here, I would just list the relevant sighash types for this experiment, but others can be found at bitcoin wiki.
+SIGHASH_SINGLE the only output signed is the one corresponding to this input (the output with the same output index number as this input), ensuring nobody can change your part of the transaction but allowing other signers to change their part of the transaction.
 
-    SIGHASH_SINGLE the only output signed is the one corresponding to this input (the output with the same output index number as this input), ensuring nobody can change your part of the transaction but allowing other signers to change their part of the transaction.
-
-SIGHASH_SINGLE can be combined with the SIGHASH_ANYONECANPAY (anyone can pay):
+SIGHASH_SINGLE can be combined with the SIGHASH_ANYONECANPAY (anyone can pay)
 
 SIGHASH_SINGLE|SIGHASH_ANYONECANPAY signs this one input and its corresponding output. Allows anyone to add or remove other inputs.
 
