@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    {% include "_head.liquid" %}
+  </head>
+<body data-route={{ page.data.route }}>
+  {% include "_menu.liquid" %}
+  <main>
+    <article>
+      <h1>{{ page.title }}</h1>
+      {% assign reading_wpm = 200 %} 
+      {% assign word_count = page.content | split: " " | size %}
+      {% assign reading_time = word_count | divided_by: 200 %}
+      {% case reading_time %}
+        {% when 0 %}
+          {% assign phrase = "less than a minute." %}
+        {% when 1 %}
+          {% assign phrase = "about a minute." %}
+				{% else %}								
+          {% assign phrase = " minutes." | prepend: reading_time %}
+    	{% endcase %} 
+
+			<time pubdate="pubdate">{{ page.published_date | date: "%b %d, %Y" }} - Reading time: {{ phrase }}</time><br />
+      
+      {{ page.content }}
+    </article>
+    <br /><br />
+    <a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+  </main>
+  {% include "_footer.liquid" %}
+</body>
+</html>

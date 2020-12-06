@@ -1,0 +1,113 @@
+---
+permalink: /search/
+title: search
+layout: default.liquid
+data:
+  comment: search page for site
+  route: about
+---
+<h4>type something to search for in the box below</h4>
+<p>
+<input id="search" type="text" size="25" placeholder="search for stuff here..." autofocus><br />
+</p>
+
+<h4>...and your results will appear here. don't cha know?</h4>
+<ul id="results">
+</ul>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+<script type="text/javascript" src="https://unpkg.com/lunr/lunr.js"></script>
+<script type="text/javascript">
+var lunrIndex,
+    $results,
+    pagesIndex;
+
+// This is pretty much a copy of https://gist.github.com/sebz/efddfc8fdcb6b480f567
+// Initialize lunrjs using our generated index file
+function initLunr() {
+    // First retrieve the pre-built index file
+    $.getJSON("/js/lunr_prebuilt.json")
+        .done(function(index) {
+            lunrIndex = lunr.Index.load(index);
+        })
+        .fail(function(jqxhr, textStatus, error) {
+            var err = textStatus + ", " + error;
+            console.error("Error getting cobalt index file:", err);
+        });
+        
+    // Now fetch the document collection (to enrich the search results)
+    $.getJSON("/js/lunr_docs.json")
+        .done(function(index) {
+            pagesIndex = index;
+        })
+        .fail(function(jqxhr, textStatus, error) {
+            var err = textStatus + ", " + error;
+            console.error("Error getting cobalt index file:", err);
+        });
+}
+
+// Nothing crazy here, just hook up a listener on the input field
+function initUI() {
+    $results = $("#results");
+    $("#search").keyup(function() {
+        $results.empty();
+
+        // Only trigger a search when 2 chars. at least have been provided
+        var query = $(this).val();
+        if (query.length < 2) {
+            return;
+        }
+
+        var results = search(query);
+
+        renderResults(results);
+    });
+}
+
+/**
+    * Trigger a search in lunr and transform the result
+    *
+    * @param  {String} query
+    * @return {Array}  results
+    */
+function search(query) {
+    // Find the item in our index corresponding to the lunr one to have more info
+    // Lunr result: 
+    //  {ref: "/section/page1", score: 0.2725657778206127}
+    // Our result:
+    //  {title:"Page1", href:"/section/page1", ...}
+    return lunrIndex.search(query).map(function(result) {
+            return pagesIndex.filter(function(page) {
+                return page.href === result.ref;
+            })[0];
+        });
+}
+
+/**
+    * Display the 10 first results
+    *
+    * @param  {Array} results to display
+    */
+function renderResults(results) {
+    if (!results.length) {
+        return;
+    }
+
+    // Only show the ten first results
+    results.slice(0, 10).forEach(function(result) {
+        var $result = $("<li style=\"list-style:none;\">"); // FUUUUUU!
+        $result.append($("<a>", {
+            href: "/"+result.href,
+            text: "» " + result.title
+        }));
+        $results.append($result);
+    });
+}
+
+// Let's get started
+initLunr();
+
+$(document).ready(function() {
+    initUI();
+});
+</script>

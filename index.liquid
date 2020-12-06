@@ -1,0 +1,23 @@
+---
+title: "booyaa's boggy bloggy"
+layout: default.liquid
+data:
+  route: blog
+---
+{% assign idx = 0 %}
+{% for post in collections.posts.pages %}
+{% if idx < 5 %}
+<article class="blog-list">
+  <div class="left">
+  <img src="/img/betsy.png" class="corner avi-image"/>
+  </div>
+  <div class="right">
+  <h3><a href="{{ post.permalink }}">{{ post.title }}</a></h3>
+  {{ post.content | strip_html | truncatewords: 25, '...' }}
+  </div>
+</article>
+{% endif %}
+{% assign idx = idx | plus: 1 %}
+{% endfor %}
+
+Looking for more posts? Check out the <a href="/archive/">archive</a>!

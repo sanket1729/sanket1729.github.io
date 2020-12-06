@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>{{ page.title }}</title>
-    </head>
-    <body>
-    <div>
-      <h2>{{ page.title }}</h2>
-      {{ page.content }}
-    </div>
-  </body>
+  <head>
+    {% include "_head.liquid" %}
+  </head>
+<body data-route={{ page.data.route }}>
+  {% include "_menu.liquid" %}
+  <main>
+    {{ page.content }}
+  </main>
+  {% include "_footer.liquid" %}
+</body>
 </html>
