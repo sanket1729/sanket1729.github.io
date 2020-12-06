@@ -12,7 +12,7 @@ deploy:
   local_dir: _site
   target_branch: master
   on:
-    branch: source
+    branch: master
 env:
   global:
     secure: m8DVDaeqBoYSC4axy05FelofZVrKg77PxczAemUaW3eh6tHgiEAMPiZYEGGQxUh/B20vm5GNuVSxL0BbD2Klu467RzFlFVb7fziY7xNzSbfSbx1fAmEToSg+zNzcTsjLbcvahRYdSdKUo+Z8HhsLJ/V95rt/fyZtwPbKbpiN10TN6j9qjdXmCD8ljwJ64ILs1PVUrv14ITSRSVPPXI1eeJPXcVEP/x2Dg1lZaqws17zQA65n3HQIxfYCWiYDB1xFZbVdgEDyMbbkrR6bVtaPpRNAw27WbDugyhts5iMA0yrwyrqi8i+muuPRNaRxYswIb+67yZDsfbuE8ZM5r9ijBZ/VKYN76hVDuHeDLnv6Zhm8KSWtRhp3HYLNZUdNPuByKkDsg6yfV1MPxQidXS0bb90jQ2Encu065DjemQlm8933qTbhc62BPD5+Q0BfWm7Ktu+y1hEk11Ld4EyxjHMAEFJCtO3c7vT1LpB6l2LS2qICqj2OeW3BUuZg9tfNmG2gMUBkZSEciaowk9k6+9P+7pPINPuQHnaZsknp/DethW+y3v3I8QJek/DATNG3wNh1/KZS4CwkH+ovYgpPfeK/LYdVPnfypjArrPXQlxsJhaeU81yNxSjMW2hPgFoco7aoLEgyMxSJmScDrQk6CkX8d5Dse71Ul2R3e0JSlJGz/M8=
