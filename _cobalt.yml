@@ -16,9 +16,9 @@ posts:
   jsonfeed: ~
   default: {}
 site:
-  title: "booyaa's boggy bloggy"
-  description: left intentionally blank
-  base_url: "https://booyaa.wtf"
+  title: "Sanket's Webspace"
+  description: Don't touch my btc
+  base_url: "https://sanket1729.github.io"
   data: ~
 template_extensions:
   - md
