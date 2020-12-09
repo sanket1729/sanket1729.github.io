@@ -1,7 +1,10 @@
 <nav class="menu">
   <a class="menu-item {% if page.data.route == "about"%}current{%endif%}" href="/about/">About Me</a>
   <a class="menu-item {% if page.data.route == "blog"%}current{%endif%}" href="/">Blog</a>
+    <a class="menu-item" href="/cv.pdf">CV</a>
+  {%comment%}
   <a class="menu-item {% if page.data.route == "talks"%}current{%endif%}" href="/talks">Talks</a>
+  {%endcomment%}
   <a class="menu-item" href="/search/">Search this page</a>
   <a class="menu-item" href="/archive/">Old archive</a>
   <a class="menu-item icon" href="http://github.com/sanket1729"><i class="fa fa-github"></i></a>

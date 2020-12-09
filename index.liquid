@@ -1,9 +1,15 @@
 ---
-title: "booyaa's boggy bloggy"
+title: "sanket1729's webspace"
 layout: default.liquid
 data:
-  route: blog
+  route: about
 ---
+<img class="me-image corner" src="/img/sanket_dp_zoom.jpg" />
+
+<h1>Hello,</h1></br> 
+<h6>hopefully there will be more blog content here soon :). You can more info <a href="./about">about me</a> 
+or find my <a href="/cv.pdf">CV</a> here.</h6>
+
 {% assign idx = 0 %}
 {% for post in collections.posts.pages %}
 {% if idx < 5 %}
@@ -20,4 +26,6 @@ data:
 {% assign idx = idx | plus: 1 %}
 {% endfor %}
 
+{% comment %}
 Looking for more posts? Check out the <a href="/archive/">archive</a>!
+{% endcomment %}
