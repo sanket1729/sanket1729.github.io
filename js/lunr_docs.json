@@ -2,4 +2,27 @@
 
 [
 
+
+    { 
+        "title" : "How to reduce space on AWS virtual machines",
+
+        
+        
+        
+        "tags": [
+        
+            "AWS",
+            
+        
+            "storagelimits",
+            
+        
+            "rant"
+            
+        
+        ],
+        "href" : "blog/2021-06-23-aws-rant.html",
+        "content" : "Common tricks to reduce Space on AWS nano:My goal is to improve my writing skill and also to try to stay a bit organizedin the process. So, I will start off with a rant about aws troubles I faced today.Welp, I have been running IRC bouncers on AWS servers for the past 2 years now.Given my current lifestyle I cannot really afford to own a dedicated machine ata dedicated place for a long period. The constant maintainance of a machine issomething that is impossible for a nomadic like lifestyle of mine.Something like a bitcoin node is easily possible to run on a laptop without havingthe need to be constantly online, but IRC bouncers require me to always stay online.So, I got a AWS nano machine to run a IRC bouncer for me. The nano is machine isminimal with 8Gb of space. So, I started on the quest to hunt for things that couldsave me space. At start of this process, I was using about 6.9 Gb of 8 Gb in my system.Culprit 1: Unused kernel imagesSeems like AWS sneekily was updating the machine images/usr/src/linux-aws-headers-*. These could be removed withStack overflow answer.Culprit 2: Log filesI also found it useful to contain the log file sizes used by systemd. This answer deals withrotating log files for system with journalctl.Someday, I will settle down at a somewhat permanent location and will finally try outthe bitcoin on lightning.Culprit 3: Snap filesSnap files are used as a way to distribute linux applications. Snap maintains 3versions of old applications incase things go wrong. This answer shows how to reduce the revisions of thesame application that are saved.ConclusionNow, I am back to 3.19Gb of space on my nano :) ended up saving about ~3.8 Gb overall withoutcompramising at all."
+    }
+
 ]
